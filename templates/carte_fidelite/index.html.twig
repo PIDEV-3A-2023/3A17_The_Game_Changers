@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cartes de fidélité{% endblock %}
+
+{% block body %}
+    <h1>Cartes de fidélité</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Points</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carteFidelite in carte_fidelites %}
+                <tr>
+                    <td>{{ carteFidelite.id }}</td>
+                    <td>{{ carteFidelite.points }}</td>
+                    <td>
+                        <a href="{{ path('carte_fidelite_show', {'id': carteFidelite.id}) }}">Voir</a>
+                        <a href="{{ path('carte_fidelite_edit', {'id': carteFidelite.id}) }}">Modifier</a>
+                        <form action="{{ path('carte_fidelite_delete', {'id': carteFidelite.id}) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ carteFidelite.id) }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette carte de fidélité ?')">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('carte_fidelite_new') }}" class="btn btn-primary">Créer une carte de fidélité</a>
+{% endblock %}

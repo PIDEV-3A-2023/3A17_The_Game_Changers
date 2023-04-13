@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la carte de fidélité{% endblock %}
+
+{% block body %}
+    <h1>Détails de la carte de fidélité</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Identifiant</th>
+                <td>{{ carte_fidelite.id }}</td>
+            </tr>
+            <tr>
+                <th>Points</th>
+                <td>{{ carte_fidelite.points }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('carte_fidelite_edit', {'id': carte_fidelite.id}) }}" class="btn btn-primary">Modifier</a>
+
+{% endblock %}
