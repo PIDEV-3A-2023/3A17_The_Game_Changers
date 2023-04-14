@@ -28,13 +28,6 @@ class Commentaire
      */
     private $contenu;
 
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_c", type="integer", nullable=true, options={"default"="NULL"})
-     */
-    private $idC = NULL;
-
     public function getIdCom(): ?int
     {
         return $this->idCom;
@@ -48,18 +41,6 @@ class Commentaire
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    public function getIdC(): ?int
-    {
-        return $this->idC;
-    }
-
-    public function setIdC(?int $idC): self
-    {
-        $this->idC = $idC;
 
         return $this;
     }

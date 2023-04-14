@@ -1,0 +1,23 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="row">
+
+
+     <string>   <div  style="display: flex;align-items: center;justify-content: center;margin-top:-90px; padding:50px; font-weight: 900;position:relative ; left:300px;  "> </string>
+
+          <div class="card">
+ <div class="card-body">
+              <h5 class=""  style= "color:blue ;display: flex; align-items: center; justify-content: center; padding-bottom:30px; font-weight: 900">Add Reclamation</h5>
+   
+    {{ include('reclamation/_form.html.twig') }}
+
+    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+    </div>
+        </div>
+</div>
+    </div>
+
+{% endblock %}

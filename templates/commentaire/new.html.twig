@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter Commentaire{% endblock %}
+{% block slider %}{% endblock %}
+{% block data %}
+<div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Ajouter Un Commentaire</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                	<div class="mb-4">
+                    {{ form_start(form) }}
+                       <form method="POST" action="#"  class="contact-form">	
+                          <div class="row">
+	                          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    {{ form_label(form.contenu, 'Le contenu du commentaire') }}
+                                    {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }} 
+                                    {{ form_errors(form.contenu) }}                       	
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                                <button class="btn" type="submit">{{ button_label|default('Save') }}</button>
+                            </div>
+                         </div>
+                     </form>
+                      {{ form_end(form) }}
+                    </div>
+               	</div>
+            </div>
+        </div>
+       
+    </div>
+{% endblock %}
+{% block newsletter %}{% endblock %}

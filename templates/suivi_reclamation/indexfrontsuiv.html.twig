@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SuiviReclamation index{% endblock %}
+
+{% block suivie %}
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper"><h1 class="page-width">Liste des suivis des réclamations</h1></div>
+            </div>
+        </div>
+        <!--End Page Title-->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>user</th>
+                     <th>Etat</th>
+                    <th>Réponse de la réclamation</th>
+                    <th>Contenu de la réclamation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for suivi_reclamation in suivi_reclamations %}
+                <tr>
+                    <td>{{ suivi_reclamation.idReclamation.nom }}</td>
+                    <td>{{ suivi_reclamation.etatReclamation }}</td>
+                    <td>{{ suivi_reclamation.reponseReclamation }}</td>
+                    <td>{{ suivi_reclamation.idReclamation.contenu }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement trouvé</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <a href="{{ path('app_reclamation_new') }}"></a>
+        </div>
+    </div>
+{% endblock %}

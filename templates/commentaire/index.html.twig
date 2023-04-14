@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('path/to/style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper"><h1 class="page-width">Liste des commentaires</h1></div>
+            </div>
+        </div>
+        <!--End Page Title-->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>user</th>
+                    <th>Contenu</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for commentaire in commentaires %}
+                <tr>
+                    <td>{{ commentaire.idCom }}</td>
+                    <td>{{ commentaire.contenu }}</td>
+                    <td>
+                        <a href="{{ path('app_commentaire_show', {'idCom': commentaire.idCom}) }}">show</a>
+                        <a href="{{ path('app_commentaire_edit', {'idCom': commentaire.idCom}) }}">edit</a>
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <a href="{{ path('app_commentaire_new') }}">Add new commentaire</a>
+        </div>
+    </div>
+{% endblock %}
