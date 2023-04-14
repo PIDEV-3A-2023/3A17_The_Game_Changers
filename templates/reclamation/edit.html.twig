@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Reclamation{% endblock %}
+{% block slider %}{% endblock %}
+{% block data %}
+    {#<div class="row">
+
+
+     <string>   <div  style="display: flex;align-items: center;justify-content: center;margin-top:-90px; padding:50px; font-weight: 900;position:relative ; left:300px;  "> </string>
+
+          <div class="card">
+ <div class="card-body">
+ <div class="card-body">
+              <h5 class=""  style= "color:blue ;display: flex; align-items: center; justify-content: center; padding-bottom:30px; font-weight: 900">Edit Reclamation</h5>
+   
+
+    {{ include('reclamation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+
+    {{ include('reclamation/_delete_form.html.twig') }}
+      </div>
+        </div>
+</div>
+    </div>#}
+    <div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Modifier Reclamation</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                	<div class="mb-4">
+                    {{ form_start(form) }}
+                       <form method="POST" action="#" id="CustomerLoginForm" accept-charset="UTF-8" class="contact-form">	
+                          {{ include('reclamation/_form.html.twig', {'button_label': 'Update'}) }}
+                     </form>
+                      {{ form_end(form) }}
+                    </div>
+               	</div>
+            </div>
+        </div>
+       
+    </div>
+{% endblock %}
+{% block newsletter %}{% endblock %}

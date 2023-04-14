@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,16 +53,9 @@ class Reclamation
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="dateCreation", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="dateCreation", type="date", nullable=true)
      */
-    private $datecreation = 'NULL';
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_c", type="integer", nullable=true, options={"default"="NULL"})
-     */
-    private $idC = NULL;
+    private $datecreation;
 
     public function getId(): ?int
     {
@@ -124,18 +118,6 @@ class Reclamation
     public function setDatecreation(?\DateTimeInterface $datecreation): self
     {
         $this->datecreation = $datecreation;
-
-        return $this;
-    }
-
-    public function getIdC(): ?int
-    {
-        return $this->idC;
-    }
-
-    public function setIdC(?int $idC): self
-    {
-        $this->idC = $idC;
 
         return $this;
     }

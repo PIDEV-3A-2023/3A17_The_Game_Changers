@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('path/to/style.css') }}">
+{% endblock %}
+
+{% block contentR %}
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper"><h1 class="page-width">Liste des reclamations</h1></div>
+            </div>
+        </div>
+        <!--End Page Title-->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Contenu</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for reclamation in reclamations %}
+                <tr>
+                    <td>{{ reclamation.nom }}</td>
+                    <td>{{ reclamation.prenom }}</td>
+                    <td>{{ reclamation.adresse }}</td>
+                    <td>{{ reclamation.contenu }}</td>
+                    <td>{{ reclamation.datecreation|date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
+                        <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+          <div class="text-center">
+            <a href="{{ path('app_reclamation_newfront') }}">Add new reclamation</a>
+        </div>
+    </div>
+{% endblock %}
