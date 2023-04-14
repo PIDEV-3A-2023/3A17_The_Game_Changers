@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Commentaire{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/reclamation.css') }}">
+{% endblock %}
+
+{% block edit %}
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card reclamation-card">
+                <div class="card-body">
+                    <h5 class="card-title reclamation-card-title">Edit Commentaire</h5>
+                    {{ include('commentaire/_form.html.twig', {'button_label': 'Update'}) }}
+                    <a href="{{ path('app_commentaire_index') }}" class="btn btn-primary reclamation-btn">back to list</a>
+                    {{ include('commentaire/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

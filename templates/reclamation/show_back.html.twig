@@ -1,0 +1,27 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Consulter Reclamation{% endblock %}
+
+{% block body %}
+<h1 class="h3 mb-3">Consulter Reclamation</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            
+                
+                    
+                    <tr><td>Nom </td>
+                    <td>  {{ reclamation.nom }} </td>
+</tr>
+                    <tr><td>Prenom </td><td>  {{ reclamation.prenom }} </td></tr>
+                    <tr><td>Adresse </td><td>  {{ reclamation.adresse }} </td></tr>
+                    <tr><td>Contenu </td><td>  {{ reclamation.contenu }} </td></tr>
+                    <tr><td>Date de création </td><td>  {{ reclamation.datecreation ? reclamation.datecreation|date('Y-m-d') : '' }} </td>
+                    </tr>
+     
+        </table>
+        
+    </div>
+
+{{ include('reclamation/_delete_form.html.twig') }}
+{% endblock %}

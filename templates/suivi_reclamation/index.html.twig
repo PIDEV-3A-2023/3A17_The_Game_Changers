@@ -1,0 +1,44 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}SuiviReclamation index{% endblock %}
+
+{% block suivieback %}
+    <h1>SuiviReclamation</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Etat </th>
+
+                <th>ReponseReclamation</th>
+
+                <th>Contenu Reclamation</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for suivi_reclamation in suivi_reclamations %}
+            <tr>
+                <td>{{ suivi_reclamation.id }}</td>
+                <td>{{ suivi_reclamation.etatReclamation }}</td>
+                <td>{{ suivi_reclamation.reponseReclamation }}</td>
+                <td>{{ suivi_reclamation.idReclamation.contenu }}</td>
+
+                <td>
+                    <a href="{{ path('app_suivi_reclamation_show', {'id': suivi_reclamation.id}) }}"><img src="{{ asset('front/assets/images/detail.png') }}" height="35" width="35"></a>
+                    <a href="{{ path('app_suivi_reclamation_edit', {'id': suivi_reclamation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_suivi_reclamation_new') }}">Answer more </a>
+{% endblock %}
