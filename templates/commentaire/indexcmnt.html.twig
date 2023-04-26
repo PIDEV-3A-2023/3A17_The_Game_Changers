@@ -1,0 +1,35 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block bodycmntr %}
+    <h1>Commentaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdCom</th>
+                <th>Contenu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.idCom }}</td>
+                <td>{{ commentaire.contenu }}</td>
+                <td>
+                    <a href="{{ path('app_commentaire_show_back', {'idCom': commentaire.idCom}) }}"><img src="{{ asset('front/assets/images/detail.png') }}" height="35" width="35"></a>
+                    <a href="{{ path('app_commentaire_edit_back', {'idCom': commentaire.idCom}) }}">update</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commentaire_new') }}">Ajouter</a>
+{% endblock %}

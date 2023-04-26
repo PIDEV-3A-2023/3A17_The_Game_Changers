@@ -1,0 +1,90 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-3">Reclamation Statistics</h1>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-pie mr-1"></i>
+                        Taux des Reclamations
+                    </h3>
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="revenue-chart-canvas" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+   <script>
+    var ctx = document.getElementById('revenue-chart-canvas').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line', // change type to line
+        data: {
+            labels: [
+                {% for dailyCount in dailyCounts %}
+                    '{{ dailyCount.day|date('Y-m-d') }}',
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Reclamations',
+                data: [
+                    {% for dailyCount in dailyCounts %}
+                        {{ dailyCount.count }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                         stepSize: 1,
+                suggestedMin: 0,
+                suggestedMax: 20,
+                callback: function(value, index, values) {
+                    return value + '%';
+                    }
+                }
+                }]
+            }
+        }
+    });
+</script>
+
+    {% endblock %}
+{% endblock %}

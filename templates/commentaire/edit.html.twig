@@ -13,6 +13,18 @@
             <div class="card reclamation-card">
                 <div class="card-body">
                     <h5 class="card-title reclamation-card-title">Edit Commentaire</h5>
+                    {% for message in app.flashes('danger') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
                     {{ include('commentaire/_form.html.twig', {'button_label': 'Update'}) }}
                     <a href="{{ path('app_commentaire_index') }}" class="btn btn-primary reclamation-btn">back to list</a>
                     {{ include('commentaire/_delete_form.html.twig') }}
