@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+{% endblock %}
+
+{% block chat %}
+<section style="background-color: #eee;">
+  <div class="container py-5">
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+
+        <div class="card" id="chat1" style="border-radius: 15px;">
+          <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+            style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <i class="fas fa-angle-left"></i>
+            <p class="mb-0 fw-bold">Live chat</p>
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="card-body">
+
+            <div class="chat-container">
+                {% for suiviReclamation in suiviReclamations %}
+                <div class="chat-message">
+                    <div class="chat-message-header">
+                        <strong>{{ suiviReclamation.idReclamation.contenu }}</strong>
+                        <span class="chat-message-time">{{ suiviReclamation.idReclamation.datecreation|date('H:i') }}</span>
+                    </div>
+                    <div class="chat-message-body">
+                        <p><strong>Client:</strong> {{ suiviReclamation.reponseReclamation}}</p>
+                        {% if suiviReclamation.reponseReclamation is not null %}
+                            <p><strong>Agent:</strong> {{ suiviReclamation.reponseReclamation }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr class="my-3">
+                {% endfor %}
+            </div>
+
+            <div class="form-outline">
+              <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+              <label class="form-label" for="textAreaExample">Type your message</label>
+              <div class="form-notch">
+                <div class="form-notch-leading" style="border-radius: .65rem 0 0 .65rem;"></div>
+                <div class="form-notch-middle"></div>
+                <div class="form-notch-trailing" style="border-radius: 0 .65rem .65rem 0;"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/chat.js') }}"></script>
+{% endblock %}

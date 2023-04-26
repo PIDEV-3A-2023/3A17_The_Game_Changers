@@ -1,0 +1,12 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_reclamation_rechercher:
+    path: /test
+    controller: App\Controller\ReclamationController::search
+    methods: [POST]
+    
+app_reclamation_stats:
+    path: /stat
+    controller: App\Controller\ReclamationController::stats
+    methods: [GET]
