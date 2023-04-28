@@ -20,7 +20,7 @@
 </head>
 <body class="template-index belle template-index-belle">
 <div id="pre-loader">
-    <img src="{{ asset('images/loader.gif') }}" alt="Loading..." />
+    <img src="{{ asset('front/assets/images/loader.gif') }}"  alt="Loading..." />
 </div>
 <div class="pageWrapper">
 	<!--Search Form Drawer-->
@@ -153,15 +153,13 @@
                                     <ul class="grid grid--uniform mmWrapper">
                                     	<li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Shop Pages</a>
                                             <ul class="subLinks">
+                                            <li class="lvl-2"><a href="{{ path('shop') }}" class="site-nav lvl-2">Liste des véhicules<span class="lbl nm_label1">New</span></a></li>
                                                 <li class="lvl-2"><a href="shop-left-sidebar.html" class="site-nav lvl-2">Left Sidebar</a></li>
                                                 <li class="lvl-2"><a href="shop-right-sidebar.html" class="site-nav lvl-2">Right Sidebar</a></li>
                                                 <li class="lvl-2"><a href="shop-fullwidth.html" class="site-nav lvl-2">Fullwidth</a></li>
-                                                <li class="lvl-2"><a href="shop-grid-3.html" class="site-nav lvl-2">3 items per row</a></li>
-                                                <li class="lvl-2"><a href="shop-grid-4.html" class="site-nav lvl-2">4 items per row</a></li>
-                                                <li class="lvl-2"><a href="shop-grid-5.html" class="site-nav lvl-2">5 items per row</a></li>
-                                                <li class="lvl-2"><a href="shop-grid-6.html" class="site-nav lvl-2">6 items per row</a></li>
-                                                <li class="lvl-2"><a href="shop-grid-7.html" class="site-nav lvl-2">7 items per row</a></li>
-                                                <li class="lvl-2"><a href="shop-listview.html" class="site-nav lvl-2">Product Listview</a></li>
+                                             
+
+                                               
                                             </ul>
                                       	</li>
                                       	<li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Shop Features</a>
@@ -280,7 +278,7 @@
                 <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
                 	<div class="logo">
                         <a href="index.html">
-                            <img src="assets/images/logo.svg" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
+                            <img src="{{ asset('front/assets/images/logo.png') }}" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
                         </a>
                     </div>
                 </div>
@@ -422,7 +420,7 @@
                 <li><a href="shop-left-sidebar.html" class="site-nav">Left Sidebar</a></li>
                 <li><a href="shop-right-sidebar.html" class="site-nav">Right Sidebar</a></li>
                 <li><a href="shop-fullwidth.html" class="site-nav">Fullwidth</a></li>
-                <li><a href="shop-grid-3.html" class="site-nav">3 items per row</a></li>
+                <li><a href="shop-grid-3.html" class="site-nav">Liste des Véhicules</a></li>
                 <li><a href="shop-grid-4.html" class="site-nav">4 items per row</a></li>
                 <li><a href="shop-grid-5.html" class="site-nav">5 items per row</a></li>
                 <li><a href="shop-grid-6.html" class="site-nav">6 items per row</a></li>
@@ -576,178 +574,104 @@
             	<div class="row">
                 	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="section-header text-center">
-                            <h2 class="h2">Nos Vehicules les plus performants!</h2>
+                            <h2 class="h2">Découvrez nos nouveaux modèles de trottinettes et vélos électriques</h2>
                             <p>Choisissez votre vehicule</p>
                         </div>
+                        <!-- tri par montant  -->
+
+
+
+
+                        <!-- end tri par montant  -->
                         <div class="tabs-listing">
-                            <ul class="tabs clearfix">
-                                <li class="active" rel="tab1">Trotinnette electrique</li>
-                                <li rel="tab2">velo electrique</li>
-                            </ul>
+
                             <div class="tab_container">
                                 <div id="tab1" class="tab_content grid-products">
                                     <div class="productSlider">
                                         
 
-<!--*******************************************************************************tabda bloc loula ******************************************************************-->
-                                         {% for vehicule in vehicules %}
-                            {% if vehicule.typeVehicule == 'Electric Scooter' %}
-                                        <div class="col-12 item">
-                                            <!-- start product image -->
-                                            <div class="product-image">
-                                                <!-- start product image -->
-                                                <a href="short-description.html">
-                                                    <!-- image -->
-                                                  
-                                                    <img class="primary blur-up lazyload" data-src="{{ asset('images/'~vehicule.image) }}" src="{{ asset('images/'~vehicule.image) }}" alt="image" title="product">
-                                                    <!-- End image -->
-                                                    <!-- Hover image -->
-                                                    <img class="hover blur-up lazyload" data-src="{{ asset('images/'~vehicule.image) }}" src="{{ asset('images/'~vehicule.image) }}" alt="image" title="product">
-                                                    <!-- End hover image -->
-                                                </a>
-                                                <!-- end product image -->
-                           
-
-                                                <!--***************************************************** bouton reserver trottinette *******************************************************************************************************-->
-                                                
-                                          <button  onclick="window.location.href='{{ path('app_front_res', {'id': vehicule.id}) }}'"  type="button" name="add" class="btn product-form__cart-submit"> <span>Réserver</span></button>
-                                          
-                                                </form>
-                                                 <!--***************************************************** bouton reserver *******************************************************************************************************-->
-                                                
-
-                                                <div class="button-set">
-                                                    <a href="javascript:void(0)" title="Quick View" class="quick-view-popup quick-view" data-toggle="modal" data-target="#content_quickview">
-                                                        <i class="icon anm anm-search-plus-r"></i>
-                                                    </a>
-                                                    <div class="wishlist-btn">
-                                                        <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                                            <i class="icon anm anm-heart-l"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="compare-btn">
-                                                        <a class="compare add-to-compare" href="compare.html" title="Add to Compare">
-                                                            <i class="icon anm anm-random-r"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- end product button -->
-                                            </div>
-                                            <!-- end product image -->
-                                            <div class="product-details text-center">
-                                                <!-- Marque -->
-                                                <div class="product-name">
-                                                    <a href="short-description.html">{{vehicule.Marque}}</a>
-                                                </div>
-                                                 <!-- VitesseMax-->
-                                                <div class="product-name">
-                                                    <a href="short-description.html">{{vehicule.vitesseMax}}</a>
-                                                </div>
-                                                  <!-- AutoBatterie-->
-                                                <div class="product-name">
-                                                    <a href="short-description.html">{{vehicule.autoBatterie}}</a>
-                                                </div>
-                                                <!-- prix -->
-                                                <div class="product-price">
-                                                    <span class="price">{{vehicule.prix}}TND</span>
-                                                </div>
-                                                <!-- End product price -->
-                                                
-                                                <!-- Variant 
-                                                <ul class="swatches">
-                                                    <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-1.jpg" alt="image" /></li>
-                                                    <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-2.jpg" alt="image" /></li>
-                                                    <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-3.jpg" alt="image" /></li>
-                                                    <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-4.jpg" alt="image" /></li>
-                                                </ul>-->
-                                                <!-- End Variant -->
-                                            </div>
-                                              
-                                            <!-- End product details -->
-                                        </div>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                </div>
-<!--*******************************************************************************youfa bloc loul ******************************************************************-->
+<!--*******************************************************************************FIRST BLOC ******************************************************************-->
+                                                        {% for vehicule in vehicules|reverse|slice(0, 4) %}
+                                        
+                                                        <div class="col-12 item">
+                                                            <!-- start product image -->
+                                                        <div class="product-image">
+                    <a href="short-description.html">
+                        <img class="primary blur-up lazyload" data-src="{{ asset('images/'~vehicule.image) }}" src="{{ asset('images/'~vehicule.image) }}" alt="image" title="product">
+                        <img class="hover blur-up lazyload" data-src="{{ asset('images/'~vehicule.image) }}" src="{{ asset('images/'~vehicule.image) }}" alt="image" title="product">
+                        <div class="product-labels rectangular">
+                        
+                            <span class="lbl pr-label1">new</span>
+                        </div>
+                    </a>
 
 
+                                                    <!-- end product image -->
+                            
 
-
-   <!--*******************************************************************************yabda bloc 2 ******************************************************************-->
-
-                                <div id="tab2" class="tab_content grid-products">
-                                    <div class="productSlider">
-                                    {% for vehicule in vehicules %}
-                            {% if vehicule.typeVehicule == 'Electric Bike' %}
-                                        <div class="col-12 item">
-                                            <!-- start product image -->
-                                            <div class="product-image">
-                                                <!-- start product image -->
-                                                <a href="short-description.html">
-                                                    <!-- image -->
+                                                    <!--***************************************************** bouton reserver trottinette *******************************************************************************************************-->
+                                                    
+                                            <button  onclick="window.location.href='{{ path('app_front_res', {'id': vehicule.id}) }}'"  type="button" name="add" class="btn product-form__cart-submit"> <span>Réserver</span></button>
                                             
-                                                    <img class="primary blur-up lazyload" data-src="{{ asset('images/'~vehicule.image) }}" src="{{ asset('images/'~vehicule.image) }}" alt="image" title="product">
-                                                    <!-- End image -->
-                                                    <!-- Hover image -->
-                                                    <img class="hover blur-up lazyload" data-src="{{ asset('images/'~vehicule.image) }}" src="{{ asset('images/'~vehicule.image) }}" alt="image" title="product">
-                                                    <!-- End hover image -->
-                                                    <!-- product label -->
-                                                   
-                                                    <!-- End product label -->
-                                                </a>
-                                                <!-- end product image -->
-        
-                                                <!-- Start product button -->
-                                                  <button  onclick="window.location.href='{{ path('app_front_res', {'id': vehicule.id}) }}'"  type="button" name="add" class="btn product-form__cart-submit"> <span>Réserver</span></button>
-                                                   
-                                                </form>
-                                                </form>
-                                                <div class="button-set">
-                                                    <a href="javascript:void(0)" title="Quick View" class="quick-view-popup quick-view" data-toggle="modal" data-target="#content_quickview">
-                                                        <i class="icon anm anm-search-plus-r"></i>
-                                                    </a>
-                                                    <div class="wishlist-btn">
-                                                        <a class="wishlist add-to-wishlist" href="wishlist.html">
-                                                            <i class="icon anm anm-heart-l"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="compare-btn">
-                                                        <a class="compare add-to-compare" href="compare.html" title="Add to Compare">
-                                                            <i class="icon anm anm-random-r"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- end product button -->
-                                            </div>
-                                            <!-- end product image -->
-        
-                                            <!--start product details -->
-                                            <div class="product-details text-center">
-                                           <!-- Marque -->
-                                                <div class="product-name">
-                                                    <a href="short-description.html">{{vehicule.Marque}}</a>
-                                                </div>
-                                                 <!-- VitesseMax-->
-                                                <div class="product-name">
-                                                    <a href="short-description.html">{{vehicule.vitesseMax}}</a>
-                                                </div>
-                                                  <!-- AutoBatterie-->
-                                                <div class="product-name">
-                                                    <a href="short-description.html">{{vehicule.autoBatterie}}</a>
-                                                </div>
-                                                <!-- prix -->
-                                                <div class="product-price">
-                                                    <span class="price">{{vehicule.prix}}TND</span>
-                                                </div>
-                                            </div>
-                                            <!-- End product details -->
-                                        </div>
- {% endif %}                                       
-{% endfor %}
+                                                    </form>
+                                                    <!--***************************************************** bouton reserver *******************************************************************************************************-->
+                                                    
 
-<!--****************************************************************************** youfa  bloc 2******************************************************************-->
+                                                    <div class="button-set">
+                                                        <a href="javascript:void(0)" title="Quick View" class="quick-view-popup quick-view" data-toggle="modal" data-target="#content_quickview">
+                                                            <i class="icon anm anm-search-plus-r"></i>
+                                                        </a>
+                                                        <div class="wishlist-btn">
+                                                            <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                                                <i class="icon anm anm-heart-l"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="compare-btn">
+                                                            <a class="compare add-to-compare" href="compare.html" title="Add to Compare">
+                                                                <i class="icon anm anm-random-r"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end product button -->
+                                                </div>
+                                                <!-- end product image -->
+                                                <div class="product-details text-center">
+                                                    <!-- Marque -->
+                                                    <div class="product-name">
+                                                        <a href="short-description.html">{{vehicule.Marque}}</a>
+                                                    </div>
+                                                    <!-- VitesseMax-->
+                                                    <div class="product-name">
+                                                        <a href="short-description.html">{{vehicule.vitesseMax}}</a>
+                                                    </div>
+                                                    <!-- AutoBatterie-->
+                                                    <div class="product-name">
+                                                        <a href="short-description.html">{{vehicule.autoBatterie}}</a>
+                                                    </div>
+                                                    <!-- prix -->
+                                                    <div class="product-price">
+                                                        <span class="price">{{vehicule.prix}}TND</span>
+                                                    </div>
+                                                    <!-- End product price -->
+                                                    
+                                                    <!-- Variant 
+                                                    <ul class="swatches">
+                                                        <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-1.jpg" alt="image" /></li>
+                                                        <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-2.jpg" alt="image" /></li>
+                                                        <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-3.jpg" alt="image" /></li>
+                                                        <li class="swatch medium rounded"><img src="assets/images/product-images/variant2-4.jpg" alt="image" /></li>
+                                                    </ul>-->
+                                                    <!-- End Variant -->
+                                                </div>
+                                                
+                                                <!-- End product details -->
+                                            </div>
+                                        
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    </div>
+<!--*******************************************************************************END FIRST BLOC******************************************************************-->
                                     </div>
                                 </div>
                             </div>
@@ -762,54 +686,14 @@
         <div class="collection-box section">
         	<div class="container-fluid">
 				<div class="collection-grid">
-                        <div class="collection-grid-item">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/images/collection/fashion.jpg" src="assets/images/collection/fashion.jpg" alt="Fashion" class="blur-up lazyload"/>
-                                <div class="collection-grid-item__title-wrapper">
-                                    <h3 class="collection-grid-item__title btn btn--secondary no-border">Fashion</h3>
-                                </div>
+
                             </a>
                         </div>
-                        <div class="collection-grid-item">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img class="blur-up lazyload" data-src="assets/images/collection/cosmetic.jpg" src="assets/images/collection/cosmetic.jpg" alt="Cosmetic"/>
-                                <div class="collection-grid-item__title-wrapper">
-                                    <h3 class="collection-grid-item__title btn btn--secondary no-border">Cosmetic</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="collection-grid-item blur-up lazyloaded">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/images/collection/bag.jpg" src="assets/images/collection/bag.jpg" alt="Bag" class="blur-up lazyload"/>
-                                <div class="collection-grid-item__title-wrapper">
-                                    <h3 class="collection-grid-item__title btn btn--secondary no-border">Bag</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="collection-grid-item">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/images/collection/accessories.jpg" src="assets/images/collection/accessories.jpg" alt="Accessories" class="blur-up lazyload"/>
-                                <div class="collection-grid-item__title-wrapper">
-                                    <h3 class="collection-grid-item__title btn btn--secondary no-border">Accessories</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="collection-grid-item">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/images/collection/shoes.jpg" src="assets/images/collection/shoes.jpg" alt="Shoes" class="blur-up lazyload"/>
-                                <div class="collection-grid-item__title-wrapper">
-                                    <h3 class="collection-grid-item__title btn btn--secondary no-border">Shoes</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="collection-grid-item">
-                            <a href="collection-page.html" class="collection-grid-item__link">
-                                <img data-src="assets/images/collection/jewellry.jpg" src="assets/images/collection/jewellry.jpg" alt="Jewellry" class="blur-up lazyload"/>
-                                <div class="collection-grid-item__title-wrapper">
-                                    <h3 class="collection-grid-item__title btn btn--secondary no-border">Jewellry</h3>
-                                </div>
-                            </a>
-                        </div>
+
+
+
+
+
                     </div>
             </div>
         </div>
@@ -988,10 +872,10 @@
                                 <!-- start product image -->
                                 <a href="product-accordion.html" class="grid-view-item__link">
                                     <!-- image -->
-                                    <img class="grid-view-item__image primary blur-up lazyload" data-src="assets/images/product-images/product-image3.jpg" src="assets/images/product-images/product-image3.jpg" alt="image" title="product">
-                                    <!-- End image -->
-                                    <!-- Hover image -->
-                                    <img class="grid-view-item__image hover blur-up lazyload" data-src="assets/images/product-images/product-image3-1.jpg" src="assets/images/product-images/product-image3-1.jpg" alt="image" title="product">
+                                   <img class="primary blur-up lazyload" data-src="{{ asset('front/assets/images/product-images/product-image3.jpg') }}" src="assets/images/product-images/product-image3.jpg" alt="image" title="product">
+                                        <!-- End image -->
+                                        <!-- Hover image -->
+                                        <img class="hover blur-up lazyload" data-src="{{ asset('front/assets/images/product-images/product-image3-1.jpg') }}" src="assets/images/product-images/product-image3-1.jpg" alt="image" title="product">
                                     <!-- End hover image -->
                                     <!-- product label -->
                                     <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
