@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employee index{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-    <h1>Employee index</h1>
+    <h1>Liste des employés</h1>
 
     <table class="table">
         <thead>
@@ -40,4 +40,5 @@
     </table>
 
     <a href="{{ path('app_employee_new') }}">Create new</a>
+
 {% endblock %}

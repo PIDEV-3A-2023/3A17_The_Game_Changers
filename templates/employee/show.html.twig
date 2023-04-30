@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Employee</h1>
+    <div id="calendar"></div>
 
     <table class="table">
         <tbody>
@@ -13,30 +14,95 @@
         </tr>
         <tr>
             <th>Nom</th>
-            <td>{{ employee.Nom }}</td>
+            <td>{{ employee.nom }}</td>
         </tr>
         <tr>
             <th>Prenom</th>
-            <td>{{ employee.Prenom }}</td>
+            <td>{{ employee.prenom }}</td>
         </tr>
         <tr>
             <th>Type</th>
-            <td>{{ employee.Type }}</td>
+            <td>{{ employee.type }}</td>
         </tr>
         <tr>
             <th>Email</th>
-            <td>{{ employee.Email }}</td>
+            <td>{{ employee.email }}</td>
         </tr>
         <tr>
             <th>Disponibilite</th>
-            <td>{{ employee.getDisponibiliteString() ? }}</td>
+            <td>{{ employee.getDisponibilite() }}</td>
         </tr>
+
+
+        <tr>
+            <td colspan="2">
+                {% for i in range(1, employee.rating ) %}
+                    <i class="star">&#9733;</i>
+                {% endfor %}
+            </td>
+        </tr>
+
+
+
         </tbody>
     </table>
 
-    <a href="{{ path('app_employee_index') }}">back to list</a>
+    <form method="post" action="{{ path('app_employee_rate', {'id': employee.id}) }}">
+        <label for="rating">Rate the employee:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">
+            <label class="form-check-label" for="rating1">
+                &#9733;
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">
+            <label class="form-check-label" for="rating2">
+                &#9733;&#9733;
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+            <label class="form-check-label" for="rating3">
+                &#9733;&#9733;&#9733;
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+            <label class="form-check-label" for="rating4">
+                &#9733;&#9733;&#9733;&#9733;
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
+            <label class="form-check-label" for="rating5">
+                &#9733;&#9733;&#9733;&#9733;&#9733;
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-    <a href="{{ path('app_employee_edit', {'id': employee.id}) }}">edit</a>
+    <a href="{{ path('app_employee_rate', {'id': employee.id}) }}">Rate this employee</a>
 
-    {{ include('employee/_delete_form.html.twig') }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fetch the calendar data from the API
+            $.get('{{ path('app_employee_calendar', {'id': employee.id}) }}', function(data) {
+                // Initialize the FullCalendar widget with the fetched data
+                $('#calendar').fullCalendar({
+                    events: data,
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    }
+                });
+            });
+        });
+    </script>
+
+
 {% endblock %}

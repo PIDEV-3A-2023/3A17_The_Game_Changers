@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ReparationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection ;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 #[ORM\Entity(repositoryClass: ReparationRepository::class)]
@@ -17,7 +20,7 @@ class Reparation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Vous devez décrire la panne!!")]
+    #[Assert\NotBlank(message: "Veuillez remplir ce champ")]
     private ?string $Description_Panne = null;
     #[ORM\OneToMany(mappedBy: 'id_employe', targetEntity: Employee::class,)]
     private Collection $employees;
@@ -27,13 +30,38 @@ class Reparation
 
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date_declaration = null;
+    private ?\DateTimeInterface $Date_declaration;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Date_rep = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Date_recuperation = null;
+
+    #[ORM\OneToMany(mappedBy: 'reparation', targetEntity: Vehicule::class)]
+    private Collection $vehicule;
+
+    #[ORM\Column(type: 'integer')]
+    private ?int $id_veh = null;
+
+    public function getIdVeh(): ?int
+    {
+        return $this->id_veh;
+    }
+
+    public function setIdVeh(?int $id_veh): self
+    {
+        $this->id_veh = $id_veh;
+
+        return $this;
+    }
+
+    public function __construct()
+    {
+        $this->vehicule = new ArrayCollection();
+    }
+
+
 
 
 
@@ -47,7 +75,7 @@ class Reparation
         return $this->Description_Panne;
     }
 
-    public function setDescriptionPanne(string $Description_Panne): self
+    public function setDescriptionPanne(?string $Description_Panne): self
     {
         $this->Description_Panne = $Description_Panne;
 
@@ -59,7 +87,7 @@ class Reparation
         return $this->Etat ? 'reparé' : 'non reparé';
     }
 
-    public function setEtat(string $Etat): self
+    public function setEtat(?string $Etat): self
     {
         $this->Etat = $Etat;
 
@@ -71,7 +99,7 @@ class Reparation
         return $this->Date_rep;
     }
 
-    public function setDateRep(\DateTimeInterface $Date_rep): self
+    public function setDateRep(?\DateTimeInterface $Date_rep): self
     {
         $this->Date_rep = $Date_rep;
 
@@ -83,7 +111,7 @@ class Reparation
         return $this->Date_declaration;
     }
 
-    public function setDateDeclaration(\DateTimeInterface $Date_declaration): self
+    public function setDateDeclaration(?\DateTimeInterface $Date_declaration): self
     {
         $this->Date_declaration = $Date_declaration;
 
@@ -95,7 +123,7 @@ class Reparation
         return $this->Date_recuperation;
     }
 
-    public function setDateRecuperation(\DateTimeInterface $Date_recuperation): self
+    public function setDateRecuperation(?\DateTimeInterface $Date_recuperation): self
     {
         $this->Date_recuperation = $Date_recuperation;
 
@@ -118,6 +146,39 @@ class Reparation
     {
         $this->employees = $employees;
     }
+
+    /**
+     * @return Collection<int, Vehicule>
+     */
+    public function getVehicule(): Collection
+    {
+        return $this->vehicule;
+    }
+
+    public function addVehicule(Vehicule $vehicule): self
+    {
+        if (!$this->vehicule->contains($vehicule)) {
+            $this->vehicule->add($vehicule);
+            $vehicule->setReparation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicule(Vehicule $vehicule): self
+    {
+        if ($this->vehicule->removeElement($vehicule)) {
+            // set the owning side to null (unless already changed)
+            if ($vehicule->getReparation() === $this) {
+                $vehicule->setReparation(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 
 
 

@@ -1,3 +1,12 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+# routes.yaml
+employee_calendar_api:
+  path: /employee/{id}/calendar
+  methods: [GET]
+  controller: App\Controller\EmployeeController::calendar
+app_employee_rate:
+  path: '/employee/{id}/rate'
+  controller: 'App\Controller\EmployeeController::rate'
+  methods: [GET, POST]

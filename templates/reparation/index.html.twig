@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reparation index{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-    <h1>Reparation index</h1>
+    <h1>Liste des réparations</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description_Panne</th>
-                <th>Etat</th>
-                <th>Date_rep</th>
-                <th>Date_declaration</th>
-                <th>Date_recuperation</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Description_Panne</th>
+            <th>Etat</th>
+            <th>Date_rep</th>
+            <th>Date_declaration</th>
+            <th>Date_recuperation</th>
+            <th>Id_Vehicule</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for reparation in reparations %}
@@ -26,18 +27,19 @@
                 <td>{{ reparation.DateRep ? reparation.DateRep|date('Y-m-d') : '' }}</td>
                 <td>{{ reparation.DateDeclaration ? reparation.DateDeclaration|date('Y-m-d') : '' }}</td>
                 <td>{{ reparation.DateRecuperation ? reparation.DateRecuperation|date('Y-m-d') : '' }}</td>
+                <td>{{ reparation.IdVeh }}</td>
                 <td>
-                    <a href="{{ path('app_reparation_show', {'id': reparation.id}) }}">show</a>
-                    <a href="{{ path('app_reparation_edit', {'id': reparation.id}) }}">edit</a>
+                    <a href="{{ path('app_reparation_show', {'id': reparation.id}) }}">Voir</a>
+                    <a href="{{ path('app_reparation_edit', {'id': reparation.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="8">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_reparation_new') }}">Create new</a>
+    <a href="{{ path('app_reparation_new') }}">Ajouter une réparation</a>
 {% endblock %}

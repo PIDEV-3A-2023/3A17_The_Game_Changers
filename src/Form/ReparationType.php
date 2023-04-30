@@ -13,6 +13,9 @@ class ReparationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->setAttributes([
+                'novalidate' => 'novalidate'
+            ])
             ->add('Description_Panne')
             ->add('Etat', ChoiceType::class, [
                 'choices' => [
@@ -25,6 +28,7 @@ class ReparationType extends AbstractType
             ->add('Date_rep')
             ->add('Date_declaration')
             ->add('Date_recuperation')
+            ->add('id_veh')
         ;
     }
 

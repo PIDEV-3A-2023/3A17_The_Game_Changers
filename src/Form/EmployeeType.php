@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class EmployeeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -21,25 +22,25 @@ class EmployeeType extends AbstractType
             ->add('Nom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Donner votre nom'
+                    'placeholder' => null
                 ],
             ])
             ->add('Prenom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Donner votre prenom'
+                    'placeholder' => null
                 ],
             ])
             ->add('Type', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Donner votre type'
+                    'placeholder' => null
                 ],
             ])
             ->add('Email', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Donner votre email'
+                    'placeholder' => null
                 ],
             ])
             ->add('Disponibilite', ChoiceType::class, [

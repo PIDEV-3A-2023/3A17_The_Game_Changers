@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/reparation')]
-class ReparationController extends AbstractController
+class
+ReparationController extends AbstractController
 {
     #[Route('/', name: 'app_reparation_index', methods: ['GET'])]
     public function index(ReparationRepository $reparationRepository): Response
@@ -21,7 +22,8 @@ class ReparationController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_reparation_new', methods: ['GET', 'POST'])]
+
+    #[Route('/new', name: 'app_reparation_new', methods: ['GET','POST'])]
     public function new(Request $request, ReparationRepository $reparationRepository): Response
     {
         $reparation = new Reparation();
@@ -29,15 +31,26 @@ class ReparationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $reparationRepository->save($reparation, true);
 
-            return $this->redirectToRoute('app_reparation_index', [], Response::HTTP_SEE_OTHER);
+
+                $reparationRepository->save($reparation, true);
+
+                return $this->redirectToRoute('app_reparation_index', [], Response::HTTP_SEE_OTHER);
+
         }
-
         return $this->renderForm('reparation/new.html.twig', [
             'reparation' => $reparation,
             'form' => $form,
         ]);
+    }
+    /**
+     * @Route("/dashboard", name="dashboard", methods={"GET"})
+     */
+
+    public function dashboard( )
+    {
+
+        return $this->render('dashboard.html.twig');
     }
 
     #[Route('/{id}', name: 'app_reparation_show', methods: ['GET'])]

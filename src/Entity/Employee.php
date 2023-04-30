@@ -14,21 +14,24 @@ class Employee
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Vous devez écrire votre nom !")]
+    #[Assert\NotBlank(message: "Veuillez remplir ce champ")]
     private ?string $Nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Vous devez écrire votre prenom !")]
+    #[Assert\NotBlank(message: "Veuillez remplir ce champ")]
     private ?string $Prenom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Vous devez mettre le type!")]
+    #[Assert\NotBlank(message: "Veuillez remplir ce champ")]
+    #[Assert\NotBlank(message: "Veuillez remplir ce champ")]
     private ?string $Type = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Vous devez écrire votre adress email !")]
+    #[Assert\NotBlank(message: "Veuillez remplir ce champ")]
     private ?string $Email = null;
 
+    #[ORM\Column(length: 255)]
+    private ?int $rating = null;
     #[ORM\Column(length: 255)]
     private ?string $Disponibilite = null;
 
@@ -54,6 +57,16 @@ class Employee
         return $this->Prenom;
     }
 
+    public function getRating():?int
+    {
+        return $this->rating;
+    }
+    public function setRating(int $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
     public function setPrenom(string $Prenom): self
     {
         $this->Prenom = $Prenom;
