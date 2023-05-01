@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<head>
+  <!-- ... -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..."/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- ... -->
+</head>
+<div class="alert alert-primary" role="alert">
+ <!-- ... -->
+<div class="form-group">
+  <label for="month-select">Sélectionner un mois :</label>
+  <select class="form-control" id="month-select">
+    {% set months = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'} %}
+    {% for key, month in months %}
+      <option value="{{ key }}">{{ month }}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <a href="#" class="btn btn-outline-secondary" style="background-color: #808080; color: #fff;" onclick="generatePdfByMonth()">
+    <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true" style="color: #fff;"></i>
+  </a>
+</div>
+
+<script>
+  function generatePdfByMonth() {
+    var selectedMonth = document.getElementById("month-select").value;
+    window.location.href = "/print/by-month?month=" + selectedMonth;
+  }
+</script>
+
+
+</div>
+<div class="card">
+  <div class="card-header">
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>IdRes</th>
+              <th>DateDebut</th>
+              <th>DateFin</th>
+              <th>Montant</th>
+              <th>IdClient</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+      {% for reservation in reservations %}
+          <tr>
+              <td>{{ reservation.idRes }}</td>
+              <td>{{ reservation.dateDebut ? reservation.dateDebut.format('Y-m-d') : '' }}</td>
+              <td>{{ reservation.dateFin ? reservation.dateFin.format('Y-m-d') : '' }}</td>
+              <td>{{ reservation.montant }}</td>
+              <td>{{ reservation.idClient }}</td>
+              <td>
+                  <a href="{{ path('app_reservation_show', {'idRes': reservation.idRes}) }}" class="btn btn-primary">Show</a>
+                  <a href="{{ path('app_reservation_edit', {'idRes': reservation.idRes}) }}" class="btn btn-success">Edit</a>
+   <a href="{{ path('app_reservation_print', {'idRes': reservation.idRes}) }}" class="btn btn-secondary" style="color: #fff; background-color: #808080;">
+    <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true" style="color: #fff;"></i> 
+</a>
+
+</a>
+
+</a>
+
+              </td>
+          </tr>
+      {% else %}
+          <tr>
+              <td colspan="6">No records found</td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

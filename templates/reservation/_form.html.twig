@@ -1,0 +1,67 @@
+{{ form_start(form) }}
+
+<div class="fixed-top">
+    {% if form_errors(form.dateDebut) %}
+        <div class="alert alert-danger">La date de début doit être inférieure ou égale à la date de fin</div>
+    {% endif %}
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger">Cette véhicule est déjà réservée pour ces dates</div>
+    {% endif %}
+
+    {% if form.vars.submitted and form.vars.valid %}
+        <div class="alert alert-success">Votre réservation a été effectuée avec succès!</div>
+    {% endif %}
+    
+</div>
+
+
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.dateDebut) }}
+    {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control'}, 'id': 'reservation_dateDebut'}) }}
+</div>
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.dateFin) }}
+    {{ form_widget(form.dateFin, {'attr': {'class': 'form-control'}, 'id': 'reservation_dateFin'}) }}
+</div>
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.montant) }}
+    {{ form_widget(form.montant, {'attr': {'class': 'form-control', 'readonly': true}, 'id': 'reservation_montant'}) }}
+</div>
+
+<button class="btn btn-primary" style="margin-left: 200px;">{{ button_label|default('Réserver') }}</button>
+
+{% block javascripts %}
+    <script>
+        const dateDebutField = document.querySelector('#reservation_dateDebut');
+        const dateFinField = document.querySelector('#reservation_dateFin');
+        const montantField = document.querySelector('#reservation_montant');
+        
+function updateMontant() {
+    const dateDebutField = document.querySelector('#reservation_dateDebut');
+    const dateFinField = document.querySelector('#reservation_dateFin');
+    const montantField = document.querySelector('#reservation_montant');
+
+    const dateDebut = new Date(dateDebutField.value);
+    const dateFin = new Date(dateFinField.value);
+
+    if (dateDebut <= dateFin) {
+        const diffTime = Math.abs(dateFin - dateDebut);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const montant = diffDays * 10;
+        montantField.value = montant.toFixed(2);
+        montantField.style.border = '1px solid #E6E6FA';
+
+    } else {
+        montantField.value = '';
+        montantField.style.border = '1px solid red'; // Mettre la bordure en rouge si la condition est fausse
+    }
+}
+        
+        dateDebutField.addEventListener('change', updateMontant);
+        dateFinField.addEventListener('change', updateMontant);
+    </script>
+{% endblock %}
+
+{{ form_end(form) }}
