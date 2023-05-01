@@ -74,15 +74,11 @@
             <div class="row align-items-center">
             	<!--Desktop Logo-->
 
-                <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
-                    <a href="index.html">
-
-
-                      <img src="assets/images/logo.png" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" width="300" height="70"/>
-
-
-                    </a>
-                </div>
+<div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+    <a href="{{ path('front_index') }}">
+        <img src="{{ asset('front/assets/images/logo.png') }}" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
+    </a>
+</div>
                 <!--End Desktop Logo-->
                 <div class="col-2 col-sm-3 col-md-3 col-lg-8">
                 	<div class="d-block d-lg-none">
@@ -277,7 +273,7 @@
                 <!--Mobile Logo-->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
                 	<div class="logo">
-                        <a href="index.html">
+                       <a href="{{ path('front_index') }}">
                             <img src="{{ asset('front/assets/images/logo.png') }}" alt="Belle Multipurpose Html Template" title="Belle Multipurpose Html Template" />
                         </a>
                     </div>

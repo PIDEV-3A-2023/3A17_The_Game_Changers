@@ -2,3 +2,16 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+
+app_reservation_pdf:
+    path: /reservation/pdf
+    methods: ['GET']
+    controller: App\Controller\ReservationController::pdfAction
+    
+print_by_month:
+  path: /print/by-month
+  controller: App\Controller\ReservationController::generatePdfByMonth
+
+shop:
+  path: /shop
+  controller: App\Controller\ShopController::index
