@@ -222,7 +222,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/vehicule" class="nav-link active">
+                <a href="/vehicule" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestion des véhicules</p>
                 </a>
@@ -233,6 +233,47 @@
                   <p>Gestion Réservations</p>
                 </a>
               </li>
+
+ <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+              Gestion Reclamation
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ path('app_reclamation_new') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> ajouter Reclamation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ path('app_reclamation_index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>affichage Reclamation</p>
+                </a>
+              </li>
+             
+              
+                <li class="nav-item">
+                <a href="{{ path('app_suivi_reclamation_index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Suivi Reclamation</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+ 
+          
+          <li class="nav-item">
+                <a href="{{ path('app_commentaire_index_back') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List commentaire</p>
+                </a>
+              </li>
+  
               <li class="nav-item">
                 <a href="./index3.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -875,6 +916,14 @@
  {% block title %}Vehicule{% endblock %}
 
 {% block body %}
+    
+{% endblock %}
+
+
+{% block bodycmntr %}
+    
+{% endblock %}
+{% block suivieback %}
     
 {% endblock %}
 

@@ -97,6 +97,10 @@ class Vehicule
         return $this;
     }
 
+    public function __construct() {
+        $this->isBlocked = false; // initialisation par défaut
+    }
+
 
     public function getId(): ?int
     {
