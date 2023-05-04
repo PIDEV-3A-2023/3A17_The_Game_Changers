@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<head>
+  <!-- ... -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..."/>
+  <!-- ... -->
+</head>
+
+   <div class="alert alert-primary" role="alert">
+
+ <!-- pour  le  bouton add new-->
+<button class="btn btn-primary" style="border: 1px solid white;" onclick="window.location.href='{{ path('app_vehicule_new') }}'">
+  <i class="fas fa-plus"></i> Create new
+</button>
+
+
+</div>
+
+<div class="card">
+              <div class="card-header">
+                
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-striped rounded">
+
+          
+                <th>Id</th>
+                <th>Image</th>
+                <th>Marque</th>
+                <th>VitesseMax</th>
+                <th>ChargeMaxsupp</th>
+                <th>AutoBatterie</th>
+                <th>Couleur</th>
+                <th>TypeVehicule</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+     
+ <!-- condition pour le couleur -->   
+        {% for vehicule in vehicules %}
+            {% if vehicule.typeVehicule == 'Electric Bike' %}
+                 <tr style="background-color: white ;">
+            {% elseif vehicule.typeVehicule == 'Electric Scooter' %}
+            <tr style="background-color:#D2D7E5;">
+
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{ vehicule.id }}</td>
+                <td>{% if vehicule.image %}<img src="{{ asset('images/'~vehicule.image) }}" width="100" alt="{{ vehicule.id }}">{% endif %}</td>
+                <td>{{ vehicule.marque }}</td>
+                <td>{{ vehicule.vitesseMax }}</td>
+                <td>{{ vehicule.chargeMaxsupp }}</td>
+                <td>{{ vehicule.autoBatterie }}</td>
+                <td>{{ vehicule.couleur }}</td>
+                <td>{{ vehicule.typeVehicule }}</td>
+                <td>{{ vehicule.prix }}</td>
+                <td>
+<div class="btn-group">
+<a class="btn btn-sm btn-transparent mr-2" href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">
+    <i class="fas fa-eye text-primary"></i>
+</a>
+
+<a class="btn btn-sm btn-transparent mr-2" href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}">
+    <i class="fas fa-edit text-info"></i>
+</a>
+{% if vehicule.isBlocked==0 %}
+<a class="btn btn-sm btn-warning text-white mr-2" href="{{ path('app_reclamation_newfront', {'id': vehicule.id}) }}">
+<i class="fas fa-exclamation-triangle"></i> Reclamation
+</a>
+{% endif %}
+
+    {{ include('vehicule/_delete_form.html.twig')}}
+
+</div>
+
+
+             </td>
+            </tr>
+        {% else %}
+         
+                <a class="right badge badge-danger" >no records found</a>
+           
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

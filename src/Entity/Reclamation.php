@@ -57,6 +57,48 @@ class Reclamation
      */
     private $datecreation;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idV", type="integer",  nullable=true)
+     */
+    private $idV;
+    
+ /**
+     * @ORM\Column(name="etat",type="integer", nullable=true)
+     */
+    private $etat;
+    
+ /**
+     * @ORM\Column(name="image",type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    // ...
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+    public function getEtat(): ?int
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?int $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +148,17 @@ class Reclamation
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+    public function getIdV(): ?int
+    {
+        return $this->idV;
+    }
+
+    public function setIdV(int $idV): self
+    {
+        $this->idV = $idV;
 
         return $this;
     }

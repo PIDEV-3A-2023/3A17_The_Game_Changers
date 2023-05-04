@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+       <div class="alert alert-primary" role="alert">
+   <a >Editer les données de la véhicule numéro {{ vehicule.id }}</a>
+</div>
+
+    {{ include('vehicule/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_vehicule_index') }}">back to list</a>
+
+   
+{% endblock %}

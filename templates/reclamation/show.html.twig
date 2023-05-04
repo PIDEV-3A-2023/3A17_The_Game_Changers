@@ -86,8 +86,38 @@
             </tr>
         </tbody>
     </table>
+       {% if check==1 %}
+  <div class="card">
+  <div class="card-header">
+    <h3 class="mb-0">Suivi Reclamation</h3>
+  </div>
 
-    <a href="{{ path('app_reclamation_index') }}" class="btn btn-secondary">Back to list</a>
+  <div class="card-body">
+    <h5 class="card-title mb-3">Réponse</h5>
+    <div class="border rounded p-3">
+      <p class="card-text">{{ reponse.reponseReclamation }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="rating">
+    {% for i in 1..5 %}
+        {% if average_rating >= i %}
+            <span class="fa fa-star checked"></span>
+        {% else %}
+            <span class="fa fa-star"></span>
+        {% endif %}
+    {% endfor %}
+    {% if average_rating is not null %}
+        <span class="average-rating">({{ average_rating }})</span>
+    {% endif %}
+</div>
+ <form method="post" action="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">
+        {{ form_widget(rating_form) }}
+        <button type="submit">Rate</button>
+    </form>
+    {% endif %}
+    <a href="{{ path('app_reclamation_index_front') }}" class="btn btn-secondary">Back to list</a>
 
     <div class="mt-4">
         <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}" class="btn btn-primary mr-3">Edit</a>

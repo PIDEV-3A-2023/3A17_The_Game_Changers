@@ -3,7 +3,6 @@
 namespace App\Controller;
 use App\Entity\Reclamation;
 use App\Repository\SuiviReclamationRepository;
-
 use App\Entity\SuiviReclamation;
 use App\Form\SuiviReclamationType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,7 +36,24 @@ class SuiviReclamationController extends AbstractController
             'suivi_reclamations' => $suiviReclamations,
         ]);
     }
+   # src/Controller/ReclamationController.php
 
+
+
+
+#[Route('/suivistat', name: 'app_suivireclamation_stat', methods: ['GET'])]
+public function statistics(SuiviReclamationRepository $repo): Response
+{
+    $suivi = $repo->countAll();
+
+    dump($suivi); // Dump the value of $suivi to check if it contains the expected value
+
+    return $this->render('reclamation/stats.html.twig', [
+        'suivi' => $suivi,
+    ]);
+}
+
+    
     #[Route('/new', name: 'app_suivi_reclamation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -98,6 +114,9 @@ class SuiviReclamationController extends AbstractController
     public function newAnswer(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
         $reclamation = $entityManager->getRepository(Reclamation::class)->find($id);
+        $reclamation->setEtat(1);
+        $entityManager->persist($reclamation);
+            $entityManager->flush();
     
         if (!$reclamation) {
             throw $this->createNotFoundException('Reclamation not found');
@@ -111,6 +130,9 @@ class SuiviReclamationController extends AbstractController
     
         if ($form->isSubmitted()) {
             $entityManager->persist($suiviReclamation);
+            $entityManager->flush();
+            $reclamation->setEtat(2);
+        $entityManager->persist($reclamation);
             $entityManager->flush();
     
             return $this->redirectToRoute('app_suivi_reclamation_index');

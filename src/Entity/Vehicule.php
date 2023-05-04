@@ -70,6 +70,43 @@ class Vehicule
      */
     private $prix;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=30, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="isBlocked", type="integer")
+     */
+    private $isBlocked;
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getIsBlocked(): ?int
+    {
+        return $this->isBlocked;
+    }
+    public function setIsBlocked(int $var): self
+    {
+        $this->isBlocked = $var;
+
+        return $this;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,5 +196,24 @@ class Vehicule
         return $this;
     }
 
+    public function __toString() {
+        return $this->marque; // assuming you have a "name" property
+    }
 
+    
+    public function __toString1() {
+        return $this->vitesseMax; // assuming you have a "name" property
+    }
+    public function __toString2() {
+        return $this->autoBatterie; // assuming you have a "name" property
+    }
+    public function __toString3() {
+        return $this->couleur; // assuming you have a "name" property
+    }
+
+    public function __toString4() {
+        return $this->typeVehicule; // assuming you have a "name" property
+    }
+
+    
 }

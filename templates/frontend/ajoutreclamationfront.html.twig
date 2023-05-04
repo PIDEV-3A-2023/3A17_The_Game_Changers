@@ -1,0 +1,29 @@
+{% extends 'Reclamationfront.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="row">
+<style> 
+ .card
+ {
+    background-color:#EAEDED;
+    opacity:0.9;
+    color:black ; 
+ }
+</style>
+
+     <string>   <div  style="display: flex;align-items: center;justify-content: center;margin-top:200px; padding:50px; font-weight: 900;position:relative ; left:00px;top:130px;  "> </string>
+
+          <div class="card">
+ <div class="card-body">
+              <h5 class=""  style= "color:blue ;display: flex; align-items: center; justify-content: center; padding-bottom:S0px; font-weight: 900">Add Reclamation</h5>
+   
+    {{ include('reclamation/_form.html.twig') }}
+
+    </div>
+        </div>
+</div>
+    </div>
+
+{% endblock %}

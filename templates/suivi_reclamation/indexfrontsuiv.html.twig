@@ -16,7 +16,6 @@
             <thead>
                 <tr>
                     <th>user</th>
-                     <th>Etat</th>
                     <th>Réponse de la réclamation</th>
                     <th>Contenu de la réclamation</th>
                 </tr>
@@ -25,7 +24,6 @@
                 {% for suivi_reclamation in suivi_reclamations %}
                 <tr>
                     <td>{{ suivi_reclamation.idReclamation.nom }}</td>
-                    <td>{{ suivi_reclamation.etatReclamation }}</td>
                     <td>{{ suivi_reclamation.reponseReclamation }}</td>
                     <td>{{ suivi_reclamation.idReclamation.contenu }}</td>
                 </tr>
