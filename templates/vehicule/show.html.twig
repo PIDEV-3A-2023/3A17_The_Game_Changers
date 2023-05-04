@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+         <div class="alert alert-primary" role="alert">
+   <a >Voici le véhicule numero {{ vehicule.id }} de type {{ vehicule.typeVehicule }}</a>
+</div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vehicule.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{% if vehicule.image %}<img src="{{ asset('images/'~vehicule.image) }}" width="100" alt="{{ vehicule.id }}">{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ vehicule.marque }}</td>
+            </tr>
+            <tr>
+                <th>VitesseMax</th>
+                <td>{{ vehicule.vitesseMax }}</td>
+            </tr>
+            <tr>
+                <th>ChargeMaxsupp</th>
+                <td>{{ vehicule.chargeMaxsupp }}</td>
+            </tr>
+            <tr>
+                <th>AutoBatterie</th>
+                <td>{{ vehicule.autoBatterie }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ vehicule.couleur }}</td>
+            </tr>
+            <tr>
+                <th>TypeVehicule</th>
+                <td>{{ vehicule.typeVehicule }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ vehicule.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vehicule_index') }}">back to list</a>
+
+    <a  href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+
+
+{% endblock %}

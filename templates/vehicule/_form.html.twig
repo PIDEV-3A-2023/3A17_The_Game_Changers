@@ -1,0 +1,44 @@
+{{ form_start(form) }}
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.marque) }}
+    {{ form_widget(form.marque, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.vitesseMax) }}
+    {{ form_widget(form.vitesseMax, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.chargeMaxsupp) }}
+    {{ form_widget(form.chargeMaxsupp, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.autoBatterie) }}
+    {{ form_widget(form.autoBatterie, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.couleur) }} 
+    {{ form_widget(form.couleur, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.typeVehicule) }}
+    {{ form_widget(form.typeVehicule, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.prix) }}
+    {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="form-group" style="margin-left: 30px;">
+    {{ form_label(form.image) }}
+    {{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}
+</div>
+
+<button class="btn btn-primary" style="margin-left: 200px;" >{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

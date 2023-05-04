@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use \ConsoleTVs\Profanity\Builder;
 
 #[Route('/commentaire')]
 class CommentaireController extends AbstractController
@@ -52,15 +53,16 @@ class CommentaireController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted()) {
-            // Check for bad words
-            $badWords = ['bad', 'inappropriate', 'offensive', 'words'];
+            /*
+            $dictionaryPath = '/path/to/dictionary/file.txt';
+
+// Set the dictionary for the Builder class
+Builder::setDictionary($dictionaryPath);
+*/
             $content = $commentaire->getContenu();
-            foreach ($badWords as $badWord) {
-                if (stripos($content, $badWord) !== false) {
-                    $this->addFlash('danger', 'Your commentaire contains inappropriate language.');
-                    return $this->redirectToRoute('app_commentaire_new');
-                }
-            }
+            $cleanedContenu = \ConsoleTVs\Profanity\Builder::blocker($content)->filter();
+            $commentaire->setContenu($cleanedContenu);
+            
     
             // Save commentaire to database
          //   $commentaire->setAuthor($this->getUser());

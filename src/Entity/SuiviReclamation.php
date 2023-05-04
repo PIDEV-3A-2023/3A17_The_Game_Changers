@@ -26,13 +26,7 @@ class SuiviReclamation
      *
      * @ORM\Column(name="etat_reclamation", type="string", length=255, nullable=true)
      */
-    private $etatReclamation;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="reponse_reclamation", type="string", length=255, nullable=true)
-     */
+    
     private $reponseReclamation;
 
     /**
@@ -44,23 +38,12 @@ class SuiviReclamation
      * })
      */
     private $idReclamation;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEtatReclamation(): ?string
-    {
-        return $this->etatReclamation;
-    }
-
-    public function setEtatReclamation(?string $etatReclamation): self
-    {
-        $this->etatReclamation = $etatReclamation;
-
-        return $this;
-    }
+    
 
     public function getReponseReclamation(): ?string
     {
@@ -88,3 +71,5 @@ class SuiviReclamation
 
 
 }
+
+

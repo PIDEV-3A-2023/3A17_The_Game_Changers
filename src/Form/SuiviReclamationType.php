@@ -19,31 +19,7 @@ class SuiviReclamationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('etatReclamation', ChoiceType::class, [
-                'choices' => [
-                    'Open' => 'Open',
-                    'In Progress' => 'In Progress',
-                    'Closed' => 'Closed',
-                ],
-                'placeholder' => 'Select a state',
-                'label' => 'State',
-                'required' => true,'label_attr' => [
-                    'style' => 'margin-top: 30px;margin-buttom: 60px; margin-right:40px;'
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please select a state',
-                    ]),
-                    new Choice([
-                        'choices' => [
-                            'Open',
-                            'In Progress',
-                            'Closed',
-                        ],
-                        'message' => 'Please select a valid state',
-                    ]),
-                ],
-            ])
+            
             ->add('reponseReclamation', TextType::class, [
                 'label' => 'Description',
                 'required' => true,

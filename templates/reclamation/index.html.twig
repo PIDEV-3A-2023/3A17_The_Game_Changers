@@ -29,7 +29,7 @@
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="prev">
                 {% for reclamation in reclamations %}
                     <tr>
                         <td>{{ reclamation.nom }}</td>
@@ -44,24 +44,39 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="6" class="text-center">No records found</td>
+
+                        <td colspan="6" class="text-center">No records found
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
+            <tbody id="new"> </tbody>
         </table>
+        <a href="{{ path('export_reclamations')}}" class="">Excel</a>
     </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function searchTable() {
-        var query = document.getElementById("searchInput").value;
-        $.ajax({
+        var queryy = document.getElementById("searchInput").value;
+        
+        if (queryy.length === 0) {
+            $('#prev').show()
+            $('#new').hide()
+            $('#new').empty()
+
+        }
+        else {
+                  $.ajax({
             url: "/test",
             type: "POST",
-            data: {query: query},
+            data: {query: queryy},
             success: function(retour){
                 if(retour){
-                    $('#reclamation-table').empty();
+                    $('#prev').hide()
+                    $('#new').empty()
+                     $('#new').show()
+
                     $.each(JSON.parse(retour), function(i, obj) {
                         var row = "<tr>" +
                             "<td>" + obj.nom + "</td>" +
@@ -70,29 +85,26 @@
                             "<td>" + obj.contenu + "</td>" +
                             "<td>" + obj.datecreation + "</td>" +
                             "</tr>";
-                        $('#reclamation-table').append(row);
+                        $('#new').append(row);
                     });
                 }
                 else
                 {
-                    $('#reclamation-table').empty();
-                    {% for reclamation in reclamations %}
-                        var row = "<tr>" +
-                            "<td>{{ reclamation.nom }}</td>" +
-                            "<td>{{ reclamation.prenom }}</td>" +
-                            "<td>{{ reclamation.adresse }}</td>" +
-                            "<td>{{ reclamation.contenu }}</td>" +
-                            "<td>{{ reclamation.datecreation|date('Y-m-d') }}</td>" +
-                            "</tr>";
-                        $('#reclamation-table').append(row);
-                    {% endfor %}
+                     $('#prev').show()
+                     $('#new').hide()
+                     $('#new').empty()
                 }
             }
         });
+
+
+
+        }
+      
     }
 
     $(document).ready(function() {
-        $("#searchInput").on("input", searchTable);
+        $("#searchInput").on("keyup", searchTable);
     });
 </script>
 {% endblock %}
